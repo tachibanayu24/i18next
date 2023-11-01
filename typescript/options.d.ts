@@ -1,4 +1,4 @@
-import type { $MergeBy, $PreservedValue, $Dictionary } from './helpers.d.ts';
+import type { $MergeBy, $PreservedValue, $Dictionary } from "./helpers.d.ts";
 
 /**
  * This interface can be augmented by users to add types to `i18next` default TypeOptions.
@@ -32,6 +32,8 @@ export interface CustomTypeOptions {}
  */
 export interface CustomPluginOptions {}
 
+// 1. ユーザー定義のCustomTypeOptionsで定義された値をマージしてTypeOptionsとして利用できるようにしている
+// 以下のようにしてデフォルト値を設定しながらユーザーが型定義をカスタマイズできるようなインタフェースを提供している
 export type TypeOptions = $MergeBy<
   {
     /**
@@ -47,27 +49,27 @@ export type TypeOptions = $MergeBy<
     /**
      * Char to separate keys
      */
-    keySeparator: '.';
+    keySeparator: ".";
 
     /**
      * Char to split namespace from key
      */
-    nsSeparator: ':';
+    nsSeparator: ":";
 
     /**
      * Char to split plural from key
      */
-    pluralSeparator: '_';
+    pluralSeparator: "_";
 
     /**
      * Char to split context from key
      */
-    contextSeparator: '_';
+    contextSeparator: "_";
 
     /**
      * Default namespace used if not passed to translation function
      */
-    defaultNS: 'translation';
+    defaultNS: "translation";
 
     /**
      * Fallback namespace used if translation not found in given namespace
@@ -78,7 +80,7 @@ export type TypeOptions = $MergeBy<
     /**
      * Json Format Version - V4 allows plural suffixes
      */
-    jsonFormat: 'v4';
+    jsonFormat: "v4";
 
     /**
      * Resources to initialize with
@@ -95,12 +97,12 @@ export type TypeOptions = $MergeBy<
     /**
      * Prefix for interpolation
      */
-    interpolationPrefix: '{{';
+    interpolationPrefix: "{{";
 
     /**
      * Suffix for interpolation
      */
-    interpolationSuffix: '}}';
+    interpolationSuffix: "}}";
   },
   CustomTypeOptions
 >;
@@ -138,7 +140,7 @@ export type FormatFunction = (
   value: any,
   format?: string,
   lng?: string,
-  options?: InterpolationOptions & $Dictionary,
+  options?: InterpolationOptions & $Dictionary
 ) => string;
 
 export interface InterpolationOptions {
@@ -262,7 +264,7 @@ export interface ReactOptions {
    * Set it to fallback to let passed namespaces to translated hoc act as fallbacks
    * @default 'default'
    */
-  nsMode?: 'default' | 'fallback';
+  nsMode?: "default" | "fallback";
   /**
    * Set it to the default parent element created by the Trans component.
    * @default 'div'
@@ -296,7 +298,9 @@ export interface ReactOptions {
    * that always throws an error.
    * @default undefined
    */
-  hashTransKey?(defaultValue: TOptionsBase['defaultValue']): TOptionsBase['defaultValue'];
+  hashTransKey?(
+    defaultValue: TOptionsBase["defaultValue"]
+  ): TOptionsBase["defaultValue"];
   /**
    * Convert eg. <br/> found in translations to a react component of type br
    * @default true
@@ -388,7 +392,7 @@ export interface InitOptions<T = object> extends PluginOptions<T> {
    * 'languageOnly' --> 'en'
    * @default 'all'
    */
-  load?: 'all' | 'currentOnly' | 'languageOnly';
+  load?: "all" | "currentOnly" | "languageOnly";
 
   /**
    * Array of languages to preload. Important on server-side to assert translations are loaded before rendering views.
@@ -450,7 +454,7 @@ export interface InitOptions<T = object> extends PluginOptions<T> {
   /**
    * @default 'fallback'
    */
-  saveMissingTo?: 'current' | 'all' | 'fallback';
+  saveMissingTo?: "current" | "all" | "fallback";
 
   /**
    * Used to not fallback to the key as default value, when using saveMissing functionality.
@@ -471,7 +475,7 @@ export interface InitOptions<T = object> extends PluginOptions<T> {
         key: string,
         fallbackValue: string,
         updateMissing: boolean,
-        options: any,
+        options: any
       ) => void);
 
   /**
@@ -490,7 +494,11 @@ export interface InitOptions<T = object> extends PluginOptions<T> {
    * Gets called in case a interpolation value is undefined. This method will not be called if the value is empty string or null
    * @default noop
    */
-  missingInterpolationHandler?: (text: string, value: any, options: InitOptions) => any;
+  missingInterpolationHandler?: (
+    text: string,
+    value: any,
+    options: InitOptions
+  ) => any;
 
   /**
    * Will use 'plural' as suffix for languages only having 1 plural form, setting it to false will suffix all with numbers
@@ -605,7 +613,7 @@ export interface InitOptions<T = object> extends PluginOptions<T> {
    * Compatibility JSON version
    * @default 'v4'
    */
-  compatibilityJSON?: 'v1' | 'v2' | 'v3' | 'v4';
+  compatibilityJSON?: "v1" | "v2" | "v3" | "v4";
 
   /**
    * Options for https://github.com/locize/locize-lastused
@@ -748,9 +756,12 @@ export interface TOptionsBase {
   interpolation?: InterpolationOptions;
 }
 
-export type TOptions<TInterpolationMap extends object = $Dictionary> = TOptionsBase &
-  TInterpolationMap;
+export type TOptions<TInterpolationMap extends object = $Dictionary> =
+  TOptionsBase & TInterpolationMap;
 
-export type FlatNamespace = $PreservedValue<keyof TypeOptions['resources'], string>;
+export type FlatNamespace = $PreservedValue<
+  keyof TypeOptions["resources"],
+  string
+>;
 export type Namespace<T = FlatNamespace> = T | readonly T[];
-export type DefaultNamespace = TypeOptions['defaultNS'];
+export type DefaultNamespace = TypeOptions["defaultNS"];
