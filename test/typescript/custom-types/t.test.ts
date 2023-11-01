@@ -1,7 +1,8 @@
 import i18next, { TFunction } from "i18next";
 
-// @MyComment
-// 5. ちなみにこんなふうにテストしてる
+/**
+ * @MyComment 5. ちなみにこんなふうにテストしてる
+ */
 function defaultNamespaceUsage(t: TFunction) {
   t("bar");
   t("foo");

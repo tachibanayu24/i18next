@@ -32,9 +32,10 @@ export interface CustomTypeOptions {}
  */
 export interface CustomPluginOptions {}
 
-// @MyComment
-// 1. ユーザー定義のCustomTypeOptionsで定義された値をマージしてTypeOptionsとして利用できるようにしている
-// 以下のようにしてデフォルト値を設定しながらユーザーが型定義をカスタマイズできるようなインタフェースを提供している
+/**
+ * @MyComment 1. ユーザー定義のCustomTypeOptionsで定義された値をマージしてTypeOptionsとして利用できるようにしている
+ * 以下のようにしてデフォルト値を設定しながらユーザーが型定義をカスタマイズできるようなインタフェースを提供している
+ */
 export type TypeOptions = $MergeBy<
   {
     /**

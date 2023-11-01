@@ -19,8 +19,9 @@ type $FirstNamespace<Ns extends Namespace> = Ns extends readonly any[]
   ? Ns[0]
   : Ns;
 
-// @MyComment
-// 2. それぞれ利用しやすいように型エイリアスをつけて取り出す
+/**
+ * @MyComment 2. それぞれ利用しやすいように型エイリアスをつけて取り出す
+ */
 type _ReturnObjects = TypeOptions["returnObjects"];
 type _ReturnNull = TypeOptions["returnNull"];
 type _KeySeparator = TypeOptions["keySeparator"];
@@ -268,9 +269,10 @@ type AppendKeyPrefix<Key, KPrefix> = KPrefix extends string
  * T function declaration *
  **************************/
 
-// @MyComment
-// 3. 最終的にt関数に与えられる型
-// ここで拡張されたTypeOptionsを利用して型をつけている
+/**
+ * @MyComment 3. 最終的にt関数に与えられる型
+ * ここで拡張されたTypeOptionsを利用して型をつけている
+ */
 export interface TFunction<
   Ns extends Namespace = DefaultNamespace,
   KPrefix = undefined
